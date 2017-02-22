@@ -1,5 +1,9 @@
 package com.ydays.toc_eat.toc_eat;
 
+/**
+ * Created by clemb on 22/02/2017.
+ */
+
 
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
@@ -9,22 +13,22 @@ import android.view.Window;
 import android.view.WindowManager;
 import com.ydays.toc_eat.Adapter.*;
 
-public class LoginActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
-    private LoginAdapter mSectionsPagerAdapter;
+    private NavigationAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_home);
 
         Window window = this.getWindow();
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
-        mSectionsPagerAdapter = new LoginAdapter(getSupportFragmentManager());
+        mSectionsPagerAdapter = new NavigationAdapter(getSupportFragmentManager());
 
         mViewPager = (ViewPager) findViewById(R.id.fragment_container_login);
         mViewPager.setAdapter(mSectionsPagerAdapter);
@@ -32,6 +36,6 @@ public class LoginActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabsLogin);
         tabLayout.setupWithViewPager(mViewPager);
 
-        mViewPager.setCurrentItem(0);
+        mViewPager.setCurrentItem(1);
     }
 }
