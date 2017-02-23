@@ -9,7 +9,7 @@ public class AppConfig {
     /*
     URL ABOUT SERVER API
      */
-    public static String url ="http://localhost:3000/";
+    public static String url ="http://infra.ynovlyon.com:3000/";
     public static String url_login = url+"login";
     public static String url_register = url+"register";
     public static String url_listing = url+"listing";
