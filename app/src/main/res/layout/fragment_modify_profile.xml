@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:weightSum="1">
-
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -17,7 +15,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
@@ -27,7 +25,7 @@
                 android:layout_gravity="left"
                 android:layout_weight="1" />
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
@@ -37,7 +35,7 @@
                 android:layout_gravity="left"
                 android:layout_weight="1" />
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
@@ -47,7 +45,7 @@
                 android:layout_gravity="left"
                 android:layout_weight="1" />
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
@@ -56,7 +54,7 @@
                 android:text="Adresse Email"
                 android:layout_weight="1" />
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
@@ -65,7 +63,7 @@
                 android:id="@+id/editText5"
                 android:layout_weight="1" />
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPostalAddress"
@@ -74,7 +72,7 @@
                 android:text="Code postal"
                 android:layout_weight="1" />
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
@@ -83,7 +81,7 @@
                 android:id="@+id/editText7"
                 android:layout_weight="1" />
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
@@ -92,7 +90,7 @@
                 android:id="@+id/editText8"
                 android:layout_weight="1" />
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
@@ -101,7 +99,7 @@
                 android:id="@+id/editText9"
                 android:layout_weight="1" />
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
@@ -111,7 +109,7 @@
                 android:singleLine="false"
                 android:layout_weight="1" />
 
-            <TextView
+            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
@@ -144,12 +142,13 @@
         android:layout_height="100dp">
 
         <Button
-            android:text="MODIFIER"
+            android:text="Valider les modifications"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonmodify"
-            android:layout_weight="0.12"/>
+            android:id="@+id/button"
+            android:layout_weight="0.12" />
     </LinearLayout>
 
 
 </LinearLayout>
+
