@@ -9,13 +9,23 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.MapsInitializer;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.ydays.toc_eat.toc_eat.R;
 
 
 public class SearchAdvertFragment extends Fragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
-
+    MapView m;
     public SearchAdvertFragment() {
         // Required empty public constructor
     }
@@ -32,8 +42,15 @@ public class SearchAdvertFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_searchadvert, container, false);
+        View v = inflater.inflate(R.layout.fragment_searchadvert, container, false);
+        m = (MapView) v.findViewById(R.id.mapView);
+
+        return v;
+
+        // Gets the MapView from the XML layout and creates it
+
     }
 
     @Override
