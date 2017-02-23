@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Toc-Eat</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_hello_google_map">HelloGoogleMapActivity</string>
+    <string name="mapKey">AIzaSyCwF-zVnxabE3FG77juExSYgsbovYN8ZiQ</string>
 </resources>
