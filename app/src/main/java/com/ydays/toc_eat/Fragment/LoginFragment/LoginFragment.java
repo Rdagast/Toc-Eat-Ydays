@@ -5,6 +5,7 @@ package com.ydays.toc_eat.Fragment.LoginFragment;
  */
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -80,13 +81,24 @@ public class LoginFragment extends Fragment {
                         tryConnection(edEmail.getText().toString(), edPassword.getText().toString(), new LoginCallback() {
                             @Override
                             public void onSuccess(JSONObject user) {
+
+                                SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
+                                SharedPreferences.Editor editor = pref.edit();
+                                try {
+                                    editor.putString("auth_token", user.getString("auth_token")); // Storing string
+                                    editor.commit(); // commit changes
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+
                                 Intent myIntent = new Intent(getActivity(), HomeActivity.class);
                                 startActivity(myIntent);
                             }
 
                             @Override
                             public void onError(String errorMsg) {
-                                Log.d(" result ", "fail");
+                                Log.d(" result ", errorMsg);
                             }
                         });
                     }else {
@@ -127,8 +139,7 @@ public class LoginFragment extends Fragment {
                     boolean error = jObj.getBoolean("errors");
 
                     if (!error) {
-                        JSONObject user = jObj.getJSONObject("user");
-                        callBack.onSuccess(user);
+                        callBack.onSuccess(jObj);
                     } else {
                         String errorMsg = jObj.getString("error_msg");
                         callBack.onError(errorMsg);

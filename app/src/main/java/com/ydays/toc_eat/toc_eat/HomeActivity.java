@@ -19,7 +19,17 @@ import com.ydays.toc_eat.Adapter.*;
 public class HomeActivity extends AppCompatActivity {
 
     private NavigationAdapter mSectionsPagerAdapter;
+
     private ViewPager mViewPager;
+
+    public ViewPager getmViewPager() {
+        return mViewPager;
+    }
+
+    public void setmViewPager(ViewPager mViewPager) {
+        this.mViewPager = mViewPager;
+    }
+
     private TabLayout tabLayout;
     public static boolean test;
 

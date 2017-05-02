@@ -12,7 +12,17 @@ import com.ydays.toc_eat.Adapter.*;
 public class LoginActivity extends AppCompatActivity {
 
     private LoginAdapter mSectionsPagerAdapter;
+
     private ViewPager mViewPager;
+
+    public ViewPager getmViewPager() {
+        return mViewPager;
+    }
+
+    public void setmViewPager(ViewPager mViewPager) {
+        this.mViewPager = mViewPager;
+    }
+
     private TabLayout tabLayout;
 
     @Override

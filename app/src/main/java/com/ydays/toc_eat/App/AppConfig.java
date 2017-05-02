@@ -14,7 +14,8 @@ public class AppConfig {
     public static String url_register = url+"register";
     public static String url_listing = url+"listing";
     public static String url_listing_insert = url+"listing/insert";
-    public static String url_chat = url+"chat";
-    public static String url_chat_send = url+"chat/send";
+    public static String url_convers = url+"conversation";
+    public static String url_send_message = url+"message/insert";
+    public static String url_chat = url+"message";
     public static String url_user = url+"user";
 }

@@ -84,6 +84,7 @@ public class RegisterFragment extends Fragment {
                                     @Override
                                     public void onSuccess(JSONObject user) {
                                         Log.d(" result ", "succes");
+                                        ((LoginActivity)getActivity()).getmViewPager().setCurrentItem(1);
                                     }
 
                                     @Override
