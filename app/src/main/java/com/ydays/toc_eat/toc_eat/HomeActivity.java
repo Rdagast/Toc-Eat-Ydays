@@ -5,8 +5,11 @@ package com.ydays.toc_eat.toc_eat;
  */
 
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
@@ -18,6 +21,7 @@ public class HomeActivity extends AppCompatActivity {
     private NavigationAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
     private TabLayout tabLayout;
+    public static boolean test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,5 +41,6 @@ public class HomeActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
         mViewPager.setCurrentItem(1);
+
     }
 }
