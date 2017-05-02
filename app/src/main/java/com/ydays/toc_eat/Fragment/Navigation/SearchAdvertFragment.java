@@ -57,4 +57,5 @@ public class SearchAdvertFragment extends Fragment {
     public void onViewCreated(final View view, Bundle savedInstanceState) {
 
     }
+
 }
