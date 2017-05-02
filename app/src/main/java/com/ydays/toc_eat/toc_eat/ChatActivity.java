@@ -4,10 +4,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -36,16 +40,24 @@ import java.util.Map;
 
 public class ChatActivity extends AppCompatActivity {
     private String TAG = getClass().getName();
-    Intent myIntent = getIntent();
-    String idConv = myIntent.getExtras().getString("id");
-    ListView chats = (ListView) findViewById(R.id.listChat);
-    Button sendMessage = (Button) findViewById(R.id.sendMessage);
+    Intent myIntent;
+    String idConv;
+    ListView chats;
+    Button sendMessage;
     EditText messageToSend;
+    ListAdapter listAdapter;
+    final ArrayList<String> listMessages = new ArrayList<String>();;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+
+        myIntent = getIntent();
+        idConv = myIntent.getExtras().getString("id");
+        chats = (ListView) findViewById(R.id.listChat);
+        sendMessage = (Button) findViewById(R.id.sendMessage);
 
 
         tryGetChat(new MessagingCallback()  {
@@ -53,7 +65,7 @@ public class ChatActivity extends AppCompatActivity {
             public void onSuccess(JSONArray conversations) {
                 Log.d(" result ", "succes conv");
 
-                ArrayList<String> listMessages = new ArrayList<String>();
+
 
                 for (int i=0; i<conversations.length(); i++) {
                     JSONObject message = null;
@@ -65,8 +77,9 @@ public class ChatActivity extends AppCompatActivity {
                     }
 
                 }
-                ListAdapter listAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, listMessages);
+                listAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, listMessages);
                 chats.setAdapter(listAdapter);
+
             }
 
             @Override
@@ -88,7 +101,12 @@ public class ChatActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        chats.invalidateViews();
+                        listMessages.add(messageToSend.getText().toString());
+                        chats.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, listMessages) );
+                        InputMethodManager imm = (InputMethodManager)getSystemService(getApplicationContext().INPUT_METHOD_SERVICE);
+                        imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+
+                        messageToSend.setText("");
                     }
 
                     @Override
@@ -102,7 +120,7 @@ public class ChatActivity extends AppCompatActivity {
 
 
     public void tryGetChat(final MessagingCallback callBack){
-        final String tag_string_req = "req_All_Conv";
+        final String tag_string_req = "req_All_Message";
         Log.d(tag_string_req, AppConfig.url_chat);
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 AppConfig.url_chat, new Response.Listener<String>() {
@@ -115,7 +133,8 @@ public class ChatActivity extends AppCompatActivity {
                     boolean error = jObj.getBoolean("errors");
 
                     if (!error) {
-                        JSONArray responseArray = jObj.getJSONArray("message");
+                        JSONObject jObj2 = jObj.getJSONObject("conversation");
+                        JSONArray responseArray = jObj2.getJSONArray("message");
                         callBack.onSuccess(responseArray);
                     } else {
                         String errorMsg = jObj.getString("error_msg");
@@ -146,7 +165,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<String, String>();
-                    params.put("id", idConv);
+                    params.put("conversation_id", idConv);
                     return params;
             }
 
@@ -201,7 +220,7 @@ public class ChatActivity extends AppCompatActivity {
             public Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("message", messageToSend.getText().toString());
-                params.put("id", idConv);
+                params.put("conversation_id", idConv);
                 return params;
             }
 

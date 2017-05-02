@@ -114,6 +114,7 @@ public class MessagingFragment extends Fragment {
                                 String itemId = listConv.get(listViewConv.getSelectedItemPosition()+1).id;
                                 Intent myIntent = new Intent(getActivity(), ChatActivity.class);
                                 Bundle bundle = new Bundle();
+                                Log.d("id", itemId);
                                 bundle.putString("id", itemId);
                                 myIntent.putExtras(bundle);
                                 startActivity(myIntent);
