@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="5dp"
     >
 
-    <TextView
-        android:layout_marginTop="15dp"
-        android:text="Register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
-
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
+        android:layout_marginTop="50dp"
         android:id="@+id/edEmail"
-        android:hint="Email" />
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/edittext_bg"
+        android:ems="10"
+        android:hint="Adresse Email"
+        android:inputType="textEmailAddress"
+        android:paddingLeft="10dp" />
 
     <EditText
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
         android:id="@+id/edPassword"
-        android:hint="Password" />
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edittext_bg"
+        android:ems="10"
+        android:hint="Mot de passe"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp" />
 
     <EditText
-        android:layout_marginTop="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
         android:id="@+id/edPasswordConfirm"
-        android:hint="Password confirm" />
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/edittext_bg"
+        android:ems="10"
+        android:hint="Répeter le mot de passe"
+        android:inputType="textPassword"
+        android:paddingLeft="10dp" />
 
     <TextView
         android:text="TextView"
@@ -57,18 +57,21 @@
         android:id="@+id/tvErrorPassword" />
 
     <CheckBox
-    android:text="I accept CGU"
-    android:layout_marginTop="15dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/cbCGU" />
-
-    <Button
-        android:layout_marginTop="10dp"
-        android:text="Register"
+        android:id="@+id/cbCGU"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="J'accepte les règles de conditions globale d'utilisation" />
+
+    <Button
         android:id="@+id/btnRegister"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:textColor="@color/white"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
+        android:text="S'inscrire"
 
         />
 </LinearLayout>

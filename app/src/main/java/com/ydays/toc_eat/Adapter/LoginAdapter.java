@@ -43,10 +43,10 @@ public class LoginAdapter extends FragmentPagerAdapter {
         String title = null;
         switch (position) {
             case 0:
-                title = "Login";
+                title = "Connexion";
                 break;
             case 1:
-                title = "Register";
+                title = "Inscription";
                 break;
         }
         return title;
