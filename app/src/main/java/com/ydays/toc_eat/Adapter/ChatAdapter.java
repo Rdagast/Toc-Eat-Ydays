@@ -69,7 +69,7 @@ public class ChatAdapter extends BaseAdapter {
         TextView msg = (TextView) vi.findViewById(R.id.message_text);
 
         msg.setText(message.getMessage());
-        msg.setTextColor(Color.WHITE);
+        msg.setTextColor(Color.parseColor("#FFFFFF"));
         LinearLayout layout = (LinearLayout) vi
                 .findViewById(R.id.bubble_layout);
         LinearLayout parent_layout = (LinearLayout) vi
@@ -89,7 +89,7 @@ public class ChatAdapter extends BaseAdapter {
 
 
         }
-        msg.setTextColor(Color.BLACK);
+        //msg.setTextColor(Color.BLACK);
         return vi;
     }
 

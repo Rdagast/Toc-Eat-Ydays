@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:id="@+id/bubble_layout"
-        android:layout_width="200dp"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:background="@drawable/inmessage"
         android:weightSum="1">

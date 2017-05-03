@@ -14,17 +14,22 @@
         android:layout_above="@+id/addMessage" />
 
     <EditText
+        android:id="@+id/addMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toStartOf="@+id/sendMessage"
-        android:id="@+id/addMessage" />
+        android:height="50dp"
+
+        android:hint="Mon Message" />
 
     <Button
         android:id="@+id/sendMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:background="@color/colorPrimary"
+        android:text="Envoyer"
+        android:textColor="@color/white"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
 </RelativeLayout>
