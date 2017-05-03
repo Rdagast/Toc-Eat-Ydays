@@ -23,7 +23,7 @@
                 android:inputType="textPersonName"
                 android:text="Nom"
                 android:ems="10"
-                android:id="@+id/editText"
+                android:id="@+id/nom"
                 android:layout_gravity="left"
                 android:layout_weight="1" />
 
@@ -33,7 +33,7 @@
                 android:inputType="textPersonName"
                 android:text="Prénom"
                 android:ems="10"
-                android:id="@+id/editText2"
+                android:id="@+id/prenom"
                 android:layout_gravity="left"
                 android:layout_weight="1" />
 
@@ -43,7 +43,7 @@
                 android:inputType="textPersonName"
                 android:text="Date de naissance"
                 android:ems="10"
-                android:id="@+id/editText3"
+                android:id="@+id/birthday"
                 android:layout_gravity="left"
                 android:layout_weight="1" />
 
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:ems="10"
-                android:id="@+id/editText4"
+                android:id="@+id/email"
                 android:text="Adresse Email"
                 android:layout_weight="1" />
 
@@ -62,7 +62,7 @@
                 android:inputType="textPersonName"
                 android:text="Adresse"
                 android:ems="10"
-                android:id="@+id/editText5"
+                android:id="@+id/adresse"
                 android:layout_weight="1" />
 
             <TextView
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPostalAddress"
                 android:ems="10"
-                android:id="@+id/editText6"
+                android:id="@+id/postal"
                 android:text="Code postal"
                 android:layout_weight="1" />
 
@@ -80,7 +80,7 @@
                 android:inputType="textPersonName"
                 android:text="Ville"
                 android:ems="10"
-                android:id="@+id/editText7"
+                android:id="@+id/ville"
                 android:layout_weight="1" />
 
             <TextView
@@ -89,7 +89,7 @@
                 android:inputType="textPersonName"
                 android:text="Statut"
                 android:ems="10"
-                android:id="@+id/editText8"
+                android:id="@+id/statut"
                 android:layout_weight="1" />
 
             <TextView
@@ -98,7 +98,7 @@
                 android:inputType="textPersonName"
                 android:text="Repas préférés"
                 android:ems="10"
-                android:id="@+id/editText9"
+                android:id="@+id/repas"
                 android:layout_weight="1" />
 
             <TextView
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
                 android:ems="10"
-                android:id="@+id/editText10"
+                android:id="@+id/description"
                 android:text="Description"
                 android:singleLine="false"
                 android:layout_weight="1" />
@@ -117,7 +117,7 @@
                 android:inputType="textPersonName"
                 android:text="Dernières notes"
                 android:ems="10"
-                android:id="@+id/editText11"
+                android:id="@+id/lastnote"
                 android:layout_weight="1" />
 
         </LinearLayout>

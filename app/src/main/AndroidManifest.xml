@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.ydays.toc_eat.toc_eat">
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
-    <!-- Ces 2 permissions ne sont pas requises pour utiliser l'API Google Maps Android mais sont nécessaires pour afficher le bouton de position -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <!-- Ces 2 permissions ne sont pas requises pour utiliser l'API Google Maps Android mais sont nécessaires pour afficher le bouton de position -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name="com.ydays.toc_eat.App.AppController"
@@ -20,18 +18,20 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyCE5A0NOUAgNGc8WrJNHuf8ImxQZHLS--w"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCE5A0NOUAgNGc8WrJNHuf8ImxQZHLS--w" />
+
         <uses-feature
             android:glEsVersion="0x00020000"
-            android:required="true"/>
-        <!--<activity android:name=".HomeActivity">-->
+            android:required="true" />
+        <!-- <activity android:name=".HomeActivity"> -->
 
-        <!--</activity>-->
 
+        <!-- </activity> -->
 
         <activity android:name=".LoginActivity">
             <intent-filter>
@@ -40,14 +40,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".HomeActivity">
-
-        </activity>
-
-
-        <activity android:name=".ChatActivity"></activity>
-
+        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".ChatActivity" />
+        <activity android:name=".ListingActivity"></activity>
     </application>
 
 </manifest>

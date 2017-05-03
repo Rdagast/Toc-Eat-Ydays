@@ -3,6 +3,7 @@ package com.ydays.toc_eat.Fragment.Navigation;
 /**
  * Created by clemb on 22/02/2017.
  */
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
@@ -42,6 +43,7 @@ import com.ydays.toc_eat.App.AppConfig;
 import com.ydays.toc_eat.App.AppController;
 import com.ydays.toc_eat.Callback.SearchCallback;
 import com.ydays.toc_eat.toc_eat.HomeActivity;
+import com.ydays.toc_eat.toc_eat.ListingActivity;
 import com.ydays.toc_eat.toc_eat.R;
 
 import org.json.JSONArray;
@@ -61,6 +63,7 @@ public class SearchAdvertFragment extends Fragment implements OnMapReadyCallback
     private GoogleMap mMap;
     private CameraPosition mCameraPosition;
     private JSONArray listingObj;
+    private JSONObject listing;
 
     // The entry point to Google Play services, used by the Places API and Fused Location Provider.
 
@@ -257,7 +260,7 @@ private MapView m;
         for (int i=0; i<listingObj.length(); i++) {
             try {
                 ;
-                JSONObject listing = listingObj.getJSONObject(i);
+                listing = listingObj.getJSONObject(i);
                 JSONObject j = listing.getJSONObject("user");
                 String address = j.getString("adress");
                 Log.d("address",j.getString("adress"));
@@ -273,13 +276,29 @@ private MapView m;
                         Marker marker = googleMap.addMarker(new MarkerOptions()
                                 .position(new LatLng(lat, lng))
                                 .title(title)
+
                         .snippet("Prix:" + " " + participation + "€"));
+                        marker.setTag(listing);
+                        googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+
+                            @Override
+                            public void onInfoWindowClick(Marker marker) {
+
+                                try {
+                                    Intent myIntent = new Intent(getActivity(), ListingActivity.class);
+                                    Log.d("listingExtra", listing.toString());
+                                    Log.d("markerTitle", marker.getTitle());
+
+                                    myIntent.putExtra("listing", marker.getTag().toString());
+                                    startActivity(myIntent);
 
 
+                                } catch (ArrayIndexOutOfBoundsException e) {
 
+                                }
 
-
-
+                            }
+                        });
                     }
                 }
 
