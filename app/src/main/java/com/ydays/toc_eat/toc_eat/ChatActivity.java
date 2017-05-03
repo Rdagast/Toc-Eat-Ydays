@@ -1,5 +1,6 @@
 package com.ydays.toc_eat.toc_eat;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
@@ -22,11 +23,13 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.ydays.toc_eat.Adapter.ChatAdapter;
 import com.ydays.toc_eat.Adapter.ConvAdapter;
 import com.ydays.toc_eat.App.AppConfig;
 import com.ydays.toc_eat.App.AppController;
 import com.ydays.toc_eat.Callback.LoginCallback;
 import com.ydays.toc_eat.Callback.MessagingCallback;
+import com.ydays.toc_eat.Class.ChatMessage;
 import com.ydays.toc_eat.Class.Conversation;
 
 import org.json.JSONArray;
@@ -45,8 +48,9 @@ public class ChatActivity extends AppCompatActivity {
     ListView chats;
     Button sendMessage;
     EditText messageToSend;
-    ListAdapter listAdapter;
-    final ArrayList<String> listMessages = new ArrayList<String>();;
+    ChatAdapter chatAdapter;
+    List<ChatMessage> chatList = new ArrayList<ChatMessage>();
+    final Activity chatActivity = this;
 
 
     @Override
@@ -63,22 +67,37 @@ public class ChatActivity extends AppCompatActivity {
         tryGetChat(new MessagingCallback()  {
             @Override
             public void onSuccess(JSONArray conversations) {
-                Log.d(" result ", "succes conv");
-
-
 
                 for (int i=0; i<conversations.length(); i++) {
                     JSONObject message = null;
                     try {
+                        SharedPreferences settings = getApplicationContext().getSharedPreferences("MyPref", 0);
+
                         message = conversations.getJSONObject(i);
-                        listMessages.add(message.getString("body"));
+
+                        ChatMessage newMessage = new ChatMessage();
+
+                        newMessage.setId(message.getInt("id"));
+                        newMessage.setMessage(message.getString("body"));
+                        newMessage.setDate(message.getString("created_at"));
+                        newMessage.setUserId(message.getInt("user_id"));
+                        if(newMessage.getUserId() == settings.getInt("user_id", 0)){
+                            newMessage.setMe(true);
+                        }else{
+                            newMessage.setMe(false);
+                        }
+                        Log.d("user", Long.toString(newMessage.getUserId()));
+                        Log.d("myID",Integer.toString(settings.getInt("user_id",0)));
+                        Log.d("boolean", Boolean.toString(newMessage.getIsme()));
+                        chatList.add(newMessage);
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
 
                 }
-                listAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, listMessages);
-                chats.setAdapter(listAdapter);
+                chatAdapter = new ChatAdapter(chatActivity, chatList);
+                chats.setAdapter(chatAdapter);
 
             }
 
@@ -101,8 +120,11 @@ public class ChatActivity extends AppCompatActivity {
                             e.printStackTrace();
                         }
 
-                        listMessages.add(messageToSend.getText().toString());
-                        chats.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, listMessages) );
+
+
+                        //chatList.add();
+                        //chats.setAdapter(new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, listMessages) );
+                        chatAdapter.notifyDataSetChanged();
                         InputMethodManager imm = (InputMethodManager)getSystemService(getApplicationContext().INPUT_METHOD_SERVICE);
                         imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
 

@@ -85,8 +85,11 @@ public class LoginFragment extends Fragment {
                                 SharedPreferences pref = getActivity().getApplicationContext().getSharedPreferences("MyPref", 0); // 0 - for private mode
                                 SharedPreferences.Editor editor = pref.edit();
                                 try {
+                                    JSONObject myUser = user.getJSONObject("user");
+                                    Log.d("loginID", Integer.toString(myUser.getInt("id")));
                                     editor.putString("auth_token", user.getString("auth_token")); // Storing string
-                                    editor.commit(); // commit changes
+                                    editor.putInt("user_id", myUser.getInt("id"));
+                                    editor.apply(); // commit changes
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
