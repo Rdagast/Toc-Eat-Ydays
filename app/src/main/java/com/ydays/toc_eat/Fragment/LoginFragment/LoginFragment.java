@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -147,14 +148,14 @@ public class LoginFragment extends Fragment {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    callBack.onError(e.getMessage());
+                    Toast.makeText(getActivity(),"Erreur",Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, tag_string_req +" findUser Error: " + error.getMessage());
-                callBack.onError(error.getMessage());
+                Toast.makeText(getActivity(),"Erreur",Toast.LENGTH_SHORT).show();
             }
         }) {
 

@@ -18,4 +18,6 @@ public class AppConfig {
     public static String url_send_message = url+"message/insert";
     public static String url_chat = url+"message";
     public static String url_user = url+"user";
+    public static String url_add = url+"listing/insert";
+    public static String url_my = url + "mylisting";
 }
