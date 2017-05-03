@@ -71,14 +71,14 @@ public class RegisterFragment extends Fragment {
         edEmail = (EditText) view.findViewById(R.id.edEmail);
         edPassword = (EditText) view.findViewById(R.id.edPassword);
         edPasswordConfirm = (EditText) view.findViewById(R.id.edPasswordConfirm);
-        tvErrorEmail = (TextView) view.findViewById(R.id.tvErrorEmail);
-        tvErrorPassword = (TextView) view.findViewById(R.id.tvErrorPassword);
+//        tvErrorEmail = (TextView) view.findViewById(R.id.tvErrorEmail);
+//        tvErrorPassword = (TextView) view.findViewById(R.id.tvErrorPassword);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tvErrorPassword.setVisibility(View.GONE);
-                tvErrorEmail.setVisibility(View.GONE);
+//                tvErrorPassword.setVisibility(View.GONE);
+//                tvErrorEmail.setVisibility(View.GONE);
                 if(testEmail(edEmail.getText().toString())){
                     if(testPassword(edPassword.getText().toString(), edPasswordConfirm.getText().toString())){
                         tryConnection(edEmail.getText().toString(), edPassword.getText().toString(), edPasswordConfirm.getText().toString(),
@@ -95,12 +95,12 @@ public class RegisterFragment extends Fragment {
                                     }
                                 });
                     }else {
-                        tvErrorPassword.setVisibility(View.VISIBLE);
-                        tvErrorPassword.setText("Password should have 6 caracteres and can't be null");
+//                        tvErrorPassword.setVisibility(View.VISIBLE);
+//                        tvErrorPassword.setText("Password should have 6 caracteres and can't be null");
                     }
                 }else {
-                    tvErrorEmail.setVisibility(View.VISIBLE);
-                    tvErrorEmail.setText("Email can't be null and need real email");
+//                    tvErrorEmail.setVisibility(View.VISIBLE);
+//                    tvErrorEmail.setText("Email can't be null and need real email");
                 }
             }
         });

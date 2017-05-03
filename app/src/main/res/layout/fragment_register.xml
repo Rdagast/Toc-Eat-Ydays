@@ -7,54 +7,62 @@
     android:padding="5dp"
     >
 
-    <EditText
+    <TextView
         android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Adresse E-mail"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <EditText
+
         android:id="@+id/edEmail"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
+        android:layout_marginBottom="10dp"
         android:background="@drawable/edittext_bg"
         android:ems="10"
-        android:hint="Adresse Email"
         android:inputType="textEmailAddress"
         android:paddingLeft="10dp" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mot de passe"
+        android:layout_marginBottom="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <EditText
         android:id="@+id/edPassword"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp"
+
+        android:layout_marginBottom="10dp"
         android:background="@drawable/edittext_bg"
         android:ems="10"
-        android:hint="Mot de passe"
         android:inputType="textPassword"
         android:paddingLeft="10dp" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:text="Répeter le mot de passe"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
     <EditText
         android:id="@+id/edPasswordConfirm"
         android:layout_width="fill_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="10dp"
+
         android:background="@drawable/edittext_bg"
         android:ems="10"
-        android:hint="Répeter le mot de passe"
         android:inputType="textPassword"
         android:paddingLeft="10dp" />
-
-    <TextView
-        android:text="TextView"
-        android:visibility="gone"
-        android:textColor="@color/red"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvErrorEmail" />
-
-    <TextView
-        android:text="TextView"
-        android:visibility="gone"
-        android:textColor="@color/red"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/tvErrorPassword" />
 
     <CheckBox
         android:id="@+id/cbCGU"

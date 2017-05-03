@@ -62,6 +62,6 @@ public class NavigationAdapter extends FragmentPagerAdapter {
                 title = "Profil";
                 break;
         }
-        return title;
+        return null;
     }
 }

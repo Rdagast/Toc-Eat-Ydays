@@ -69,8 +69,8 @@ public class LoginFragment extends Fragment {
         btnLogin = (Button) view.findViewById(R.id.btnLogin);
         edEmail = (EditText) view.findViewById(R.id.edEmail);
         edPassword = (EditText) view.findViewById(R.id.edPassword);
-        tvErrorEmail = (TextView) view.findViewById(R.id.tvErrorEmail);
-        tvErrorPassword = (TextView) view.findViewById(R.id.tvErrorPassword);
+//        tvErrorEmail = (TextView) view.findViewById(R.id.tvErrorEmail);
+//        tvErrorPassword = (TextView) view.findViewById(R.id.tvErrorPassword);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,14 +155,14 @@ public class LoginFragment extends Fragment {
 
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(getActivity(),"Erreur",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Merci de rentrer un email et un mot de passe valide",Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e(TAG, tag_string_req +" findUser Error: " + error.getMessage());
-                Toast.makeText(getActivity(),"Erreur",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(),"Merci de rentrer un email et un mot de passe valide",Toast.LENGTH_SHORT).show();
             }
         }) {
 

@@ -67,7 +67,9 @@ public class ChatAdapter extends BaseAdapter {
             vi = inflater.inflate(R.layout.list_chat_message, null);
 
         TextView msg = (TextView) vi.findViewById(R.id.message_text);
+
         msg.setText(message.getMessage());
+        msg.setTextColor(Color.WHITE);
         LinearLayout layout = (LinearLayout) vi
                 .findViewById(R.id.bubble_layout);
         LinearLayout parent_layout = (LinearLayout) vi
@@ -75,13 +77,14 @@ public class ChatAdapter extends BaseAdapter {
 
         // if message is mine then align to right
         if (message.getIsme()) {
-            layout.setBackgroundResource(R.drawable.inmessage);
+            layout.setBackgroundResource(R.mipmap.inmessage);
             parent_layout.setGravity(Gravity.RIGHT);
+
 
         }
         // If not mine then align to left
         else {
-            layout.setBackgroundResource(R.drawable.outmessage);
+            layout.setBackgroundResource(R.mipmap.outmessage);
             parent_layout.setGravity(Gravity.LEFT);
 
 

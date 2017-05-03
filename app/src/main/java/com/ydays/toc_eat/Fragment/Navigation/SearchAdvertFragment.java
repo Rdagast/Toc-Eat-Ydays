@@ -3,9 +3,11 @@ package com.ydays.toc_eat.Fragment.Navigation;
 /**
  * Created by clemb on 22/02/2017.
  */
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -35,6 +37,8 @@ import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -276,7 +280,7 @@ private MapView m;
                         Marker marker = googleMap.addMarker(new MarkerOptions()
                                 .position(new LatLng(lat, lng))
                                 .title(title)
-
+                                .icon(BitmapDescriptorFactory.fromResource(R.mipmap.marker))
                         .snippet("Prix:" + " " + participation + "€"));
                         marker.setTag(listing);
                         googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
@@ -299,6 +303,8 @@ private MapView m;
 
                             }
                         });
+
+
                     }
                 }
 
@@ -413,6 +419,20 @@ private MapView m;
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mGoogleApiClient.stopAutoManage(getActivity());
+        mGoogleApiClient.disconnect();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.stopAutoManage((getActivity()));
+            mGoogleApiClient.disconnect();
+        }
     }
 
 }
