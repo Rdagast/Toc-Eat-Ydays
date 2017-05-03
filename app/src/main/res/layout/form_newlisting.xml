@@ -16,7 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Title"/>
+            android:text="Titre"/>
 
         <EditText
             android:id="@+id/edNTitle"
@@ -46,6 +46,29 @@
 
         <EditText
             android:id="@+id/edNRepas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ingrédient"/>
+
+        <EditText
+            android:id="@+id/edIngredient"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"

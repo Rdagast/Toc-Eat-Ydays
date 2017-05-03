@@ -6,6 +6,7 @@ package com.ydays.toc_eat.Fragment.Navigation;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -34,6 +36,7 @@ import com.ydays.toc_eat.Callback.AddCallBack;
 import com.ydays.toc_eat.Callback.GetMyListingCallBack;
 import com.ydays.toc_eat.Callback.MessagingCallback;
 import com.ydays.toc_eat.Class.Repas;
+import com.ydays.toc_eat.toc_eat.ListingActivity;
 import com.ydays.toc_eat.toc_eat.R;
 
 import org.json.JSONArray;
@@ -46,6 +49,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.google.android.gms.internal.zzt.TAG;
+import static com.ydays.toc_eat.toc_eat.R.mipmap.marker;
 
 
 public class MyAdvertFragment extends Fragment {
@@ -85,7 +89,8 @@ public class MyAdvertFragment extends Fragment {
                                 r.getString("title"),
                                 r.getString("description"),
                                 r.getString("ingredient"),
-                                r.getInt("participation"));
+                                r.getInt("participation"),
+                                r.getString("repas"));
                         lesRepas.add(newRepas);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -94,6 +99,32 @@ public class MyAdvertFragment extends Fragment {
 
                 ListView lvRepas = (ListView) view.findViewById(R.id.lvRepas);
                 lvRepas.setAdapter(new RepasAdapter(lesRepas,getActivity()));
+
+                lvRepas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        try {
+                            Repas r = lesRepas.get(position);
+                            JSONObject obj = new JSONObject();
+                            obj.put("id",0);
+                            obj.put("title",r.getTitle());
+                            obj.put("repas",r.getRepas());
+                            obj.put("description",r.getDescription());
+                            obj.put("ingredient",r.getIngredient());
+                            obj.put("participation",r.getParticipation());
+
+                            Intent myIntent = new Intent(getActivity(), ListingActivity.class);
+                            myIntent.putExtra("listing", obj.toString());
+                            startActivity(myIntent);
+
+
+                        } catch (ArrayIndexOutOfBoundsException e) {
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
             }
 
             @Override
@@ -122,47 +153,34 @@ public class MyAdvertFragment extends Fragment {
                         final EditText edRepas = (EditText) viewDialog.findViewById(R.id.edNRepas);
                         final AutoCompleteTextView edDesc = (AutoCompleteTextView) viewDialog.findViewById(R.id.edNDescription);
                         final EditText edPrix = (EditText) viewDialog.findViewById(R.id.edNParticipation);
+                        final EditText edIngredient = (EditText) viewDialog.findViewById(R.id.edIngredient);
 
                         final String title = edTitle.getText().toString();
                         final String repas = edRepas.getText().toString();
                         final String description = edDesc.getText().toString();
                         final String prix = edPrix.getText().toString();
+                        final String ingredient = edIngredient.getText().toString();
+
                         Log.d(TAG,title+" "+repas+" "+description+" "+prix);
                         progress = ProgressDialog.show(getContext(), "Chargement",
                                 "Création de l'annonce", true);
 
-                        if (title!=""){
-                            if (repas!=""){
-                                if (description!=""){
-                                    if (prix!=""){
-                                        addNewListing(new AddCallBack() {
-                                            @Override
-                                            public void onSuccess() {
-                                                progress.dismiss();
-                                                Repas newRepas = new Repas(0,title,description,null,prix);
-                                                lesRepas.add(newRepas);
-                                                ListView lvRepas = (ListView) view.findViewById(R.id.lvRepas);
-                                                lvRepas.setAdapter(new RepasAdapter(lesRepas,getActivity()));
-                                            }
-
-                                            @Override
-                                            public void onError(String errorMsg) {
-                                                progress.dismiss();
-                                                Toast.makeText(getContext(),errorMsg,Toast.LENGTH_LONG).show();
-                                            }
-                                        },title,repas,description,prix);
-                                    }else {
-                                        Toast.makeText(getActivity(),"Le prix doit être renseigné",Toast.LENGTH_SHORT).show();
-                                    }
-                                }else {
-                                    Toast.makeText(getActivity(),"La descriptione doit être renseigné",Toast.LENGTH_SHORT).show();
-                                }
-                            }else {
-                                Toast.makeText(getActivity(),"Le repas doit être renseigné",Toast.LENGTH_SHORT).show();
+                        addNewListing(new AddCallBack() {
+                            @Override
+                            public void onSuccess() {
+                                progress.dismiss();
+                                Repas newRepas = new Repas(0,title,description,repas,Integer.parseInt(prix),ingredient);
+                                lesRepas.add(newRepas);
+                                ListView lvRepas = (ListView) view.findViewById(R.id.lvRepas);
+                                lvRepas.setAdapter(new RepasAdapter(lesRepas,getActivity()));
                             }
-                        }else {
-                            Toast.makeText(getActivity(),"Le titre doit être renseigné",Toast.LENGTH_SHORT).show();
-                        }
+
+                            @Override
+                            public void onError(String errorMsg) {
+                                progress.dismiss();
+                                Toast.makeText(getContext(),errorMsg,Toast.LENGTH_LONG).show();
+                            }
+                        },title,repas,description,prix,ingredient);
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -179,7 +197,7 @@ public class MyAdvertFragment extends Fragment {
     }
 
 
-    public void addNewListing(final AddCallBack callBack, final String title, final String repas, final String desc, final String prix){
+    public void addNewListing(final AddCallBack callBack, final String title, final String repas, final String desc, final String prix,final String ingredient){
         final String tag_string_req = "req_my";
         Log.d(tag_string_req, AppConfig.url_add);
         StringRequest strReq = new StringRequest(Request.Method.POST,
@@ -229,7 +247,7 @@ public class MyAdvertFragment extends Fragment {
                 params.put("repas", repas);
                 params.put("description", desc);
                 params.put("participation", prix);
-                //params.put("ingredient", ingredient);
+                params.put("ingredient", ingredient);
                 return params;
             }
 
