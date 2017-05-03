@@ -2,6 +2,8 @@ package com.ydays.toc_eat.toc_eat;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -19,6 +21,9 @@ public class ListingActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listing);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        setTitle(Html.fromHtml("<font color='#ffffff'> " + getResources().getString(R.string.app_name) + "</font>"));
 
         Bundle b = getIntent().getExtras();
         if (b != null) {

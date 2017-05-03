@@ -160,27 +160,39 @@ public class MyAdvertFragment extends Fragment {
                         final String description = edDesc.getText().toString();
                         final String prix = edPrix.getText().toString();
                         final String ingredient = edIngredient.getText().toString();
-
                         Log.d(TAG,title+" "+repas+" "+description+" "+prix);
-                        progress = ProgressDialog.show(getContext(), "Chargement",
-                                "Création de l'annonce", true);
 
-                        addNewListing(new AddCallBack() {
-                            @Override
-                            public void onSuccess() {
-                                progress.dismiss();
-                                Repas newRepas = new Repas(0,title,description,repas,Integer.parseInt(prix),ingredient);
-                                lesRepas.add(newRepas);
-                                ListView lvRepas = (ListView) view.findViewById(R.id.lvRepas);
-                                lvRepas.setAdapter(new RepasAdapter(lesRepas,getActivity()));
-                            }
 
-                            @Override
-                            public void onError(String errorMsg) {
-                                progress.dismiss();
-                                Toast.makeText(getContext(),errorMsg,Toast.LENGTH_LONG).show();
-                            }
-                        },title,repas,description,prix,ingredient);
+                        if(edTitle.getText().toString().trim().length() == 0){
+                            Toast.makeText(getContext(),"Titre manquant",Toast.LENGTH_SHORT).show();
+                        }else if (edRepas.getText().toString().trim().length() == 0){
+                            Toast.makeText(getContext(),"Repas manquant",Toast.LENGTH_SHORT).show();
+                        }else if (edDesc.getText().toString().trim().length() == 0){
+                            Toast.makeText(getContext(),"Description manquante",Toast.LENGTH_SHORT).show();
+                        }else if (edPrix.getText().toString().trim().length() == 0){
+                            Toast.makeText(getContext(),"Prix manquant",Toast.LENGTH_SHORT).show();
+                        }else if (edIngredient.getText().toString().trim().length() == 0){
+                            Toast.makeText(getContext(),"Ingrédiant manquant",Toast.LENGTH_SHORT).show();
+                        }else {
+                            progress = ProgressDialog.show(getContext(), "Chargement",
+                                    "Création de l'annonce", true);
+                            addNewListing(new AddCallBack() {
+                                @Override
+                                public void onSuccess() {
+                                    progress.dismiss();
+                                    Repas newRepas = new Repas(0,title,description,repas,Integer.parseInt(prix),ingredient);
+                                    lesRepas.add(newRepas);
+                                    ListView lvRepas = (ListView) view.findViewById(R.id.lvRepas);
+                                    lvRepas.setAdapter(new RepasAdapter(lesRepas,getActivity()));
+                                }
+
+                                @Override
+                                public void onError(String errorMsg) {
+                                    progress.dismiss();
+                                    Toast.makeText(getContext(),errorMsg,Toast.LENGTH_LONG).show();
+                                }
+                            },title,repas,description,prix,ingredient);
+                        }
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
