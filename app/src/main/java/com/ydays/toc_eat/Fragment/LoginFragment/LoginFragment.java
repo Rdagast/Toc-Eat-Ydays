@@ -16,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -74,8 +75,8 @@ public class LoginFragment extends Fragment {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tvErrorPassword.setVisibility(View.GONE);
-                tvErrorEmail.setVisibility(View.GONE);
+//                tvErrorPassword.setVisibility(View.GONE);
+//                tvErrorEmail.setVisibility(View.GONE);
                 if(testEmail(edEmail.getText().toString())){
                     if(testPassword(edPassword.getText().toString())){
                         tryConnection(edEmail.getText().toString(), edPassword.getText().toString(), new LoginCallback() {
@@ -99,15 +100,19 @@ public class LoginFragment extends Fragment {
                             @Override
                             public void onError(String errorMsg) {
                                 Log.d(" result ", errorMsg);
+                                Toast.makeText(getContext(), "Mauvais mot de passe ou Mauvais email", Toast.LENGTH_SHORT).show();
+
                             }
                         });
                     }else {
-                        tvErrorPassword.setVisibility(View.VISIBLE);
-                        tvErrorPassword.setText("Password should have 6 caracteres and can't be null");
+//                        tvErrorPassword.setVisibility(View.VISIBLE);
+//                        tvErrorPassword.setText("Password should have 6 caracteres and can't be null");
+                        Toast.makeText(getContext(), "Mauvais mot de passe", Toast.LENGTH_SHORT).show();
                     }
                 }else {
-                    tvErrorEmail.setVisibility(View.VISIBLE);
-                    tvErrorEmail.setText("Email can't be null and need real email");
+//                    tvErrorEmail.setVisibility(View.VISIBLE);
+//                    tvErrorEmail.setText("Email can't be null and need real email");
+                    Toast.makeText(getContext(), "Mauvais email", Toast.LENGTH_SHORT).show();
                 }
             }
         });
