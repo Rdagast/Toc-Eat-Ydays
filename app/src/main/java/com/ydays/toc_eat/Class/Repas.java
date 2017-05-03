@@ -9,7 +9,9 @@ public class Repas {
     private String title;
     private String description;
     private String ingredient;
+    private String repas;
     private Integer participation;
+
 
 
     public Repas(Integer id, String title, String description, String ingredient, Integer participation) {
@@ -26,6 +28,23 @@ public class Repas {
         this.description = description;
         this.ingredient = ingredient;
         this.participation = Integer.parseInt(prix);
+    }
+
+    public Repas(Integer id, String title, String description, String ingredient, Integer participation, String repas) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.ingredient = ingredient;
+        this.repas = repas;
+        this.participation = participation;
+    }
+
+    public String getRepas() {
+        return repas;
+    }
+
+    public void setRepas(String repas) {
+        this.repas = repas;
     }
 
     public Integer getId() {
